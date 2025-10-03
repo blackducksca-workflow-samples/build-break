@@ -1,4 +1,4 @@
-name: Build Break Example
+name: Black Duck SCA Build Break Example
                                                                                                                                                                                                                                          
 on:
   push:
@@ -11,7 +11,8 @@ jobs:
     runs-on: [mac-arm-sh]
                                                                                                                                                                                                                                          
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout Source
+      uses: actions/checkout@v4
                                                                                                                                                                                                                                          
     - name: Use Node.js
       uses: actions/setup-node@v3
@@ -23,7 +24,7 @@ jobs:
         cd nodejs-npm
         npm install
                                                                                                                                                                                                                                          
-    - name: Black Duck Scan
+    - name: Black Duck SCA With Build Break
       uses: blackduck-inc/black-duck-security-scan@v2
       with:
         blackducksca_url: ${{ secrets.BLACKDUCK_URL }}
