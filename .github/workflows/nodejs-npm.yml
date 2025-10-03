@@ -1,0 +1,35 @@
+name: Build Break Example
+                                                                                                                                                                                                                                         
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+                                                                                                                                                                                                                                         
+jobs:
+  blackduck-scan:
+    runs-on: [mac-arm-sh]
+                                                                                                                                                                                                                                         
+    steps:
+    - uses: actions/checkout@v4
+                                                                                                                                                                                                                                         
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+                                                                                                                                                                                                                                         
+    - name: Install dependencies
+      run: |
+        cd nodejs-npm
+        npm install
+                                                                                                                                                                                                                                         
+    - name: Black Duck Scan
+      uses: blackduck-inc/black-duck-security-scan@v2
+      with:
+        blackducksca_url: ${{ secrets.BLACKDUCK_URL }}
+        blackducksca_token: ${{ secrets.BLACKDUCK_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        detect_args: "--detect.source.path=${{ github.workspace }}/nodejs-npm"
+        blackducksca_scan_failure_severities: 'BLOCKER,CRITICAL'
+      env:
+        DETECT_PROJECT_NAME: ${{ github.event.repository.name }}
