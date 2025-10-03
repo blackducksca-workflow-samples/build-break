@@ -17,8 +17,8 @@ jobs:
     - name: Black Duck SCA With Build Break
       uses: blackduck-inc/black-duck-security-scan@v2
       with:
-        blackducksca_url: ${{ vars.BLACKDUCK_URL }}
-        blackducksca_token: ${{ secrets.BLACKDUCK_TOKEN }}
+        blackducksca_url: ${{ vars.BLACKDUCKSCA_URL }}
+        blackducksca_token: ${{ secrets.BLACKDUCKSCA_TOKEN }}
         github_token: ${{ secrets.GITHUB_TOKEN }}
         detect_args: "--detect.source.path=${{ github.workspace }}/nodejs-npm"
         blackducksca_scan_failure_severities: 'BLOCKER,CRITICAL'
