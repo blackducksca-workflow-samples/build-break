@@ -22,6 +22,7 @@ jobs:
         blackducksca_token: ${{ secrets.BLACKDUCKSCA_TOKEN }}
         github_token: ${{ secrets.GITHUB_TOKEN }}
         detect_args: "--detect.source.path=${{ github.workspace }}/nodejs-npm"
+        blackducksca_scan_failure_severities: BLOCKER,CRITICAL
 
       env:
         DETECT_PROJECT_NAME: ${{ github.event.repository.name }}
