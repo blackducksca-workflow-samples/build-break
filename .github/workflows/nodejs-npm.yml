@@ -3,8 +3,6 @@ name: Black Duck SCA Scan with Build Break
 on:
   push:
     branches: [ main, master, develop, stage, release ]
-  pull_request:
-    branches: [ main, master, develop, stage, release ]
                                                                                                                                                                                                                                          
 jobs:
   blackducksca-scan:
