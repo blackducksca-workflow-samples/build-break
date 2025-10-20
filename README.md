@@ -24,5 +24,5 @@ Enforce security quality gates in continuous integration pipelines by terminatin
 - `BLACKDUCK_SCAN_FAILURE_SEVERITIES`: Comma-separated list of severities that should fail the build (e.g., `BLOCKER,CRITICAL,HIGH`)                                                                                                            
                                                                                                                                                                                                                                                    
 ## Quick Links                                                                                                                                                                                                                                  
-- [View Workflow File](https://github.com/blackducksca-workflow-examples/build-break/blob/main/.github/workflows/nodejs-npm.yml)                                                                                                                
-- [View Latest Scan Results](https://blackducksca-workflow-examples.github.io/build-break/)
+- [Workflow File](https://github.com/blackducksca-workflow-examples/build-break/blob/main/.github/workflows/nodejs-npm.yml)                                                                                                                
+- [Scan Results](https://blackducksca-workflow-examples.github.io/build-break/)
