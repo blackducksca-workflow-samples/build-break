@@ -8,10 +8,25 @@ jobs:
   blackducksca-scan:
     runs-on: [mac-arm-sh]
                                                                                                                                                                                                                                          
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}/nodejs-npm
+
     steps:
-    
     - name: Checkout Source
       uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'  # Specify Node version
+   
+    - name: Install dependencies
+      run: npm install  
+
+    - name: Build Project
+      run: |
+        npm rebuild
                                                                                                                                                                                                                                          
     - name: Black Duck SCA Scan with Build Break
       uses: blackduck-inc/black-duck-security-scan@v2
@@ -20,7 +35,7 @@ jobs:
         blackducksca_token: ${{ secrets.BLACKDUCKSCA_TOKEN }}
         github_token: ${{ secrets.GITHUB_TOKEN }}
         detect_args: "--detect.source.path=${{ github.workspace }}/nodejs-npm"
-        blackducksca_scan_failure_severities: BLOCKER,CRITICAL
+        blackducksca_scan_failure_severities: "BLOCKER,CRITICAL"
 
       env:
         DETECT_PROJECT_NAME: ${{ github.event.repository.name }}
